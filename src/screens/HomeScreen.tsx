@@ -6,6 +6,7 @@ export default function HomeScreen() {
         <View>
             <Text>HomeScreen</Text>
             <Text>iuhihd</Text>
+            <Text>iuhihd</Text>
         </View>
     )
 }
