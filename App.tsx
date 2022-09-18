@@ -48,8 +48,6 @@ const App = () => {
     <SafeAreaProvider>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <Navigation />
-
-      {/* <Text>ii</Text> */}
     </SafeAreaProvider>
   );
 };

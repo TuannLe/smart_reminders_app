@@ -4,9 +4,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
     NavigationContainer,
-    DefaultTheme,
-    DarkTheme,
 } from "@react-navigation/native";
+import Icon from 'react-native-vector-icons/Octicons';
+import IconFeather from 'react-native-vector-icons/Feather';
 import SignUpScreen from '../screens/SignUp'
 import SignInScreen from '../screens/SignIn'
 import HomeScreen from '../screens/HomeScreen'
@@ -88,9 +88,9 @@ function BottomTabNavigator() {
                 component={HomeScreen}
                 options={{
                     title: "Home",
-                    // tabBarIcon: ({ color }) => (
-                    //     <TabBarIcon name="home" size={25} color={color} />
-                    // ),
+                    tabBarIcon: ({ color }) => (
+                        <Icon name="home" size={30} color={color} />
+                    ),
                     headerShown: false,
                 }}
             />
@@ -99,6 +99,9 @@ function BottomTabNavigator() {
                 component={CategoriesScreen}
                 options={{
                     title: "Categories",
+                    tabBarIcon: ({ color }) => (
+                        <IconFeather name="settings" size={30} color={color} />
+                    ),
                     headerShown: false,
                 }}
             />
@@ -107,6 +110,9 @@ function BottomTabNavigator() {
                 component={SettingScreen}
                 options={{
                     title: "Setting",
+                    tabBarIcon: ({ color }) => (
+                        <IconFeather name="settings" size={30} color={color} />
+                    ),
                     headerShown: false,
                 }}
             />
