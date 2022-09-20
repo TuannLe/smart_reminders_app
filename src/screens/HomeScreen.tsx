@@ -1,6 +1,7 @@
 import { View, Text, TextInput, TouchableOpacity, FlatList } from 'react-native'
 import React, { useState } from 'react'
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+import CheckBox from '@react-native-community/checkbox';
 import tw from 'twrnc'
 
 const data = [
@@ -43,10 +44,38 @@ export default function HomeScreen() {
             <FlatList
                 data={data}
                 renderItem={(item) => (
-                    <Text>{item.item.task}</Text>
+                    <View style={tw`flex mb-2 flex-row items-center`}>
+                        <CheckBox
+                            value={isChecked}
+                            onChange={() => setChecked(!isChecked)}
+
+                        />
+                        <Text style={tw`text-base`}>{item.item.task}</Text>
+                    </View>
                 )}
                 keyExtractor={(item) => item.id}
             />
+            <View style={tw`flex flex-row items-center`}>
+                <Text style={tw`text-3xl text-blue-500 font-medium`}>Tomorrow</Text>
+                <View style={tw`border border-gray-300 px-2 rounded-xl ml-3`}>
+                    <Text style={tw`text-base`}>0/5</Text>
+                </View>
+            </View>
+            <FlatList
+                data={data}
+                renderItem={(item) => (
+                    <View style={tw`flex mb-2 flex-row items-center`}>
+                        <CheckBox
+                            value={isChecked}
+                            onChange={() => setChecked(!isChecked)}
+
+                        />
+                        <Text style={tw`text-base`}>{item.item.task}</Text>
+                    </View>
+                )}
+                keyExtractor={(item) => item.id}
+            />
+
         </View>
     )
 }

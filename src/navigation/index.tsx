@@ -5,13 +5,16 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
     NavigationContainer,
 } from "@react-navigation/native";
-import Icon from 'react-native-vector-icons/Octicons';
-import IconFeather from 'react-native-vector-icons/Feather';
+import FontistoIcon from 'react-native-vector-icons/Fontisto';
+import FeatherIcon from 'react-native-vector-icons/Feather';
+import IoniconsIcon from 'react-native-vector-icons/Ionicons'
+import tw from 'twrnc'
 import SignUpScreen from '../screens/SignUp'
 import SignInScreen from '../screens/SignIn'
 import HomeScreen from '../screens/HomeScreen'
 import SettingScreen from '../screens/SettingScreen'
 import CategoriesScreen from '../screens/CategoriesScreen'
+import TaskScreen from '../screens/TaskScreen'
 import {
     RootStackParamList,
     RootTabParamList,
@@ -87,33 +90,90 @@ function BottomTabNavigator() {
                 name="HomeTab"
                 component={HomeScreen}
                 options={{
-                    title: "Home",
-                    tabBarIcon: ({ color }) => (
-                        <Icon name="home" size={30} color={color} />
-                    ),
                     headerShown: false,
+                    tabBarShowLabel: false,
+                    tabBarIcon: (({ focused, color }) =>
+                        <>
+                            {focused ? (
+                                <FontistoIcon name="pie-chart-1" size={25} color={color} />
+                            ) : (
+                                <FeatherIcon name="pie-chart" size={26} color={color} />
+                            )}
+                        </>
+                    ),
+                    tabBarStyle: [tw`bg-[#F5F7FA]`],
                 }}
             />
             <BottomTab.Screen
                 name="CategoriesTab"
                 component={CategoriesScreen}
                 options={{
-                    title: "Categories",
-                    tabBarIcon: ({ color }) => (
-                        <IconFeather name="settings" size={30} color={color} />
-                    ),
                     headerShown: false,
+                    tabBarShowLabel: false,
+                    tabBarIcon: (({ focused, color }) =>
+                        <>
+                            {focused ? (
+                                <IoniconsIcon name="ios-grid" size={25} color={color} />
+                            ) : (
+                                <IoniconsIcon name="ios-grid-outline" size={25} color={color} />
+                            )}
+                        </>
+                    ),
+                    tabBarStyle: [tw`bg-[#F5F7FA]`],
                 }}
             />
+            <BottomTab.Screen
+                name="TaskTab"
+                component={TaskScreen}
+                options={{
+                    headerShown: false,
+                    tabBarShowLabel: false,
+                    tabBarIcon: (({ focused, color }) =>
+                        <>
+                            {focused ? (
+                                <FeatherIcon name="check-circle" size={25} color={color} />
+                            ) : (
+                                <FeatherIcon name="check-circle" size={25} color={color} />
+                            )}
+                        </>
+                    ),
+                    tabBarStyle: [tw`bg-[#F5F7FA]`],
+                }}
+            />
+            {/* <BottomTab.Screen
+                name="SearchTab"
+                component={SettingScreen}
+                options={{
+                    headerShown: false,
+                    tabBarShowLabel: false,
+                    tabBarIcon: (({ focused, color }) =>
+                        <>
+                            {focused ? (
+                                <FeatherIcon name="check-circle" size={25} color={color} />
+                            ) : (
+                                <FeatherIcon name="check-circle" size={25} color={color} />
+                            )}
+                        </>
+                    ),
+                    tabBarStyle: [tw`bg-[#F5F7FA]`],
+                }}
+            /> */}
             <BottomTab.Screen
                 name="SettingTab"
                 component={SettingScreen}
                 options={{
-                    title: "Setting",
-                    tabBarIcon: ({ color }) => (
-                        <IconFeather name="settings" size={30} color={color} />
-                    ),
                     headerShown: false,
+                    tabBarShowLabel: false,
+                    tabBarIcon: (({ focused, color }) =>
+                        <>
+                            {focused ? (
+                                <IoniconsIcon name="ios-settings" size={25} color={color} />
+                            ) : (
+                                <IoniconsIcon name="ios-settings-outline" size={25} color={color} />
+                            )}
+                        </>
+                    ),
+                    tabBarStyle: [tw`bg-[#F5F7FA]`],
                 }}
             />
         </BottomTab.Navigator>
