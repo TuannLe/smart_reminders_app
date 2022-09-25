@@ -18,7 +18,6 @@ import TaskScreen from '../screens/TaskScreen'
 import {
     RootStackParamList,
     RootTabParamList,
-    RootTabScreenProps,
 } from "../types";
 
 export default function Navigation() {
