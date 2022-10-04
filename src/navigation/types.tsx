@@ -13,6 +13,9 @@ export type RootStackParamList = {
     Root: NavigatorScreenParams<RootTabParamList> | undefined;
     TaskDetail: undefined;
     RepeatItem: undefined;
+    EndRepeat: undefined;
+    NewCategory: undefined;
+    TaskList: undefined;
 }
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<

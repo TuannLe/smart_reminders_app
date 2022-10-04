@@ -28,28 +28,18 @@ export default function TaskDetail({ navigation }) {
             <View style={tw`mt-8 p-4 border border-gray-300 bg-white`}>
                 <Text style={tw`text-base text-black`}>Task name</Text>
             </View>
-            <View style={tw`flex flex-row items-center justify-between mt-8 p-4 border border-gray-300 bg-white`}>
-                <Text style={tw`text-base text-black`}>Reminder me before</Text>
-                <Switch
-                    trackColor={{ false: "#f1f1f1", true: "#64ff77" }}
-                    thumbColor={isToggleTime ? "#fff" : "#fff"}
-                    ios_backgroundColor="#3e3e3e"
-                    onValueChange={toggleSwitchTime}
-                    value={isToggleTime}
-                />
-            </View>
             <View style={tw`flex mt-8 border border-gray-300 bg-white`}>
                 <View style={tw`flex flex-row items-center p-4 justify-between`}>
-                    <Text style={tw`text-base text-black`}>Add location</Text>
+                    <Text style={tw`text-base text-black`}>Reminder me before</Text>
                     <Switch
                         trackColor={{ false: "#f1f1f1", true: "#64ff77" }}
-                        thumbColor={isToggleLocation ? "#fff" : "#fff"}
+                        thumbColor={isToggleTime ? "#fff" : "#fff"}
                         ios_backgroundColor="#3e3e3e"
-                        onValueChange={toggleSwitchLocation}
-                        value={isToggleLocation}
+                        onValueChange={toggleSwitchTime}
+                        value={isToggleTime}
                     />
                 </View>
-                {isToggleLocation ? (
+                {isToggleTime ? (
                     <>
                         <View style={tw`border-t border-gray-300 ml-4`} />
                         <Text style={tw`text-base text-black p-4`}>Cảnh báo</Text>
@@ -65,9 +55,40 @@ export default function TaskDetail({ navigation }) {
                     <></>
                 )}
             </View>
-            <View style={tw`mt-8 py-4 border border-gray-300 bg-white`}>
-                <Text style={tw`text-base text-black px-4`}>Necessity</Text>
-                <View style={tw`border-t border-gray-300 ml-4 mt-1.5`} />
+            <View style={tw`flex mt-8 border border-gray-300 bg-white`}>
+                <View style={tw`flex flex-row items-center p-4 justify-between`}>
+                    <Text style={tw`text-base text-black`}>Add location</Text>
+                    <Switch
+                        trackColor={{ false: "#f1f1f1", true: "#64ff77" }}
+                        thumbColor={isToggleLocation ? "#fff" : "#fff"}
+                        ios_backgroundColor="#3e3e3e"
+                        onValueChange={toggleSwitchLocation}
+                        value={isToggleLocation}
+                    />
+                </View>
+            </View>
+            <View style={tw`mt-8 border border-gray-300 bg-white`}>
+                <View style={tw`flex flex-row items-center justify-between p-4`}>
+                    <Text style={tw`text-base text-black`}>Necessity</Text>
+                    <View style={tw`flex flex-row items-center`}>
+                        <TouchableOpacity
+                            style={tw`w-5 h-5 bg-green-300 rounded-full flex items-center justify-center`}
+                        >
+                            <View style={tw`w-2 h-2 bg-white rounded-full`}></View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={tw`w-5 h-5 bg-orange-300 rounded-full flex items-center justify-center ml-2`}
+                        >
+
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={tw`w-5 h-5 bg-red-400 rounded-full flex items-center justify-center ml-2`}
+                        >
+
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                <View style={tw`border-t border-gray-300 ml-4`} />
                 <Text style={tw`text-base text-black px-4 mt-3`}>Note</Text>
                 <TextInput
                     style={tw`mx-4 text-base`}

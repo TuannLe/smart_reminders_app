@@ -22,6 +22,7 @@ export default function RepeatItem({ navigation }) {
                     <Text style={tw`text-base text-black`}>Không bao giờ</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
+                    onPress={() => navigation.navigate('EndRepeat')}
                     style={tw`p-4 border-b border-gray-300`}
                 >
                     <Text style={tw`text-base text-black`}>Hàng ngày</Text>

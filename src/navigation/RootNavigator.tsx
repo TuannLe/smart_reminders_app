@@ -6,6 +6,9 @@ import SignIn from '../screens/SignIn'
 import SignUp from '../screens/SignUp'
 import TaskDetail from '../components/home/TaskDetail'
 import RepeatItem from '../components/home/RepeatItem'
+import EndRepeat from '../screens/EndRepeat'
+import NewCategory from '../screens/NewCategory'
+import TaskList from '../components/category/TaskList'
 
 export default function RootNavigator() {
     const token = true
@@ -45,6 +48,21 @@ export default function RootNavigator() {
                     <Stack.Screen
                         name="RepeatItem"
                         component={RepeatItem}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="EndRepeat"
+                        component={EndRepeat}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="NewCategory"
+                        component={NewCategory}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="TaskList"
+                        component={TaskList}
                         options={{ headerShown: false }}
                     />
                 </>

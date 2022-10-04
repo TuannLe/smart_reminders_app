@@ -14,17 +14,22 @@ const data: MODELS.CategoryModel[] = [
     {
         _id: "7657",
         name: "Personal",
-        color: "red-500"
+        color: "red-400"
     },
     {
         _id: "7658",
         name: "Homework",
-        color: "orange-500"
+        color: "orange-400"
     },
     {
         _id: "7659",
         name: "Meeting",
         color: "blue-500"
+    },
+    {
+        _id: "7659",
+        name: "Quick Notes",
+        color: "green-400"
     }
 ]
 
