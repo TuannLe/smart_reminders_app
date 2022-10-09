@@ -27,7 +27,7 @@ const data: MODELS.CategoryModel[] = [
         color: "blue-500"
     },
     {
-        _id: "7659",
+        _id: "7660",
         name: "Quick Notes",
         color: "green-400"
     }
