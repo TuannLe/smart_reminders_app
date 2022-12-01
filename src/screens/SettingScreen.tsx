@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, FlatList } from 'react-native'
 import React from 'react'
 import tw from 'twrnc'
-import * as MODELS from '../redux/category/models'
+import * as MODELS from '../model/category/models'
 import ItemCategory from '../components/dashboard/ItemCategory'
 
 const data: MODELS.CategoryModel[] = [
@@ -50,11 +50,11 @@ export default function SettingScreen() {
             <View style={tw`flex flex-row border-t border-b py-2 border-gray-300`}>
                 <View style={tw`flex flex-1`}>
                     <Text style={tw`text-xl font-medium text-black`}>120</Text>
-                    <Text style={tw`text-base`}>Created Tasks</Text>
+                    <Text style={tw`text-base text-gray-500`}>Created Tasks</Text>
                 </View>
                 <View style={tw`flex flex-1`}>
                     <Text style={tw`text-xl font-medium text-black`}>100</Text>
-                    <Text style={tw`text-base`}>Complete Tasks</Text>
+                    <Text style={tw`text-base text-gray-500`}>Complete Tasks</Text>
                 </View>
             </View>
             <View style={tw`mt-5`}>

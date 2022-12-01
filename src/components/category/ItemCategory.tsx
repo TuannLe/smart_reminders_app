@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import tw from 'twrnc'
 import { useNavigation } from '@react-navigation/native'
-import * as MODELS from '../../redux/category/models'
+import * as MODELS from '../../model/category/models'
 
 
 export default function ItemCategory({ item }: MODELS.CategoryModel | any) {

@@ -15,9 +15,8 @@ export default function TaskItem({ item }) {
             <View style={tw`flex-1 ml-3`}>
                 <Text style={tw`text-xl text-black font-medium`}>{item.item.task}</Text>
                 {/* <Text numberOfLines={1}>{item.item.description}</Text> */}
-                <Text style={tw`text-sm`}>{item.item.time}</Text>
+                <Text style={tw`text-sm text-black`}>{item.item.time}</Text>
             </View>
-            {/* <MaterialCommunityIcons name='bell-ring' style={tw`text-xl text-${item.item.necessity}`} /> */}
         </TouchableOpacity>
     )
 }

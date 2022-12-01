@@ -3,7 +3,7 @@ import React from 'react'
 import { FlatGrid } from 'react-native-super-grid';
 import tw from 'twrnc'
 import ItemCategory from '../components/category/ItemCategory';
-import * as MODELS from '../redux/category/models'
+import * as MODELS from '../model/category/models'
 import AddCategory from '../components/category/AddCategory'
 export interface ItemCategory {
     id: string,

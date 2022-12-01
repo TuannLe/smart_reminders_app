@@ -52,11 +52,11 @@ export default function HomeScreen() {
                     <AntDesignIcon name='plus' style={tw`text-xl`} />
                 </TouchableOpacity>
             </View> */}
-            <Text style={tw`px-3`}>Hi Username! Lorem ipsum dolor sit.hide</Text>
+            <Text style={tw`px-3 text-black`}>Hi Username! Lorem ipsum dolor sit.hide</Text>
             <View style={tw`flex flex-row items-center px-3`}>
                 <Text style={tw`text-3xl text-blue-500 font-medium`}>Today</Text>
                 <View style={tw`border border-gray-300 px-2 rounded-xl ml-3`}>
-                    <Text style={tw`text-base`}>0/5</Text>
+                    <Text style={tw`text-base text-black`}>0/5</Text>
                 </View>
             </View>
             <FlatList
