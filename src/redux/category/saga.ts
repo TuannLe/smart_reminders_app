@@ -8,11 +8,8 @@ import * as APIS from '../../apis/categoryAPI'
 function* create(action: any) {
     const payload = action.payload
     try {
-        const response: ResponseGenerator = yield call(APIS.create, {
-            data: payload.data,
-            token: payload.token
-        })
-        const data: INF.ICategory = response.data
+        const response: ResponseGenerator = yield call(APIS.create, payload)
+        const data: INF.IResCategory = response.data
         if (response.status === 200) {
             yield put(ACT.createCategorySuccess(data))
         } else {
@@ -24,7 +21,7 @@ function* create(action: any) {
 }
 
 function* get(action: any) {
-    const token = action.payload.token
+    const token = action.payload
     try {
         const response: ResponseGenerator = yield call(APIS.get, token)
         const data: INF.ICategory = response.data
@@ -42,8 +39,8 @@ function* update(action: any) {
     const payload = action.payload
     try {
         const response: ResponseGenerator = yield call(APIS.update, payload)
-        const data: INF.IUpdateCategory = response.data
-        if (response.status === 200) {
+        const data: INF.IResCategory = response.data
+        if (response.status === 201) {
             yield put(ACT.updateCategorySuccess(data))
         } else {
             yield put(ACT.updateCategoryFailure(data))
@@ -58,8 +55,8 @@ function* remove(action: any) {
     try {
         const response: ResponseGenerator = yield call(APIS.remove, payload)
         const data: INF.IDeleteCategory = response.data
-        if (response.status === 200) {
-            yield put(ACT.deleteCategorySuccess(data))
+        if (response.status === 204) {
+            yield put(ACT.deleteCategorySuccess(payload))
         } else {
             yield put(ACT.deleteCategoryFailure(data))
         }

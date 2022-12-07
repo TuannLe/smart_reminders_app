@@ -8,7 +8,7 @@ export const createCategoryStart = (payload: INF.ICreateCategory) => {
     }
 }
 
-export const createCategorySuccess = (payload: INF.ICreateCategory) => {
+export const createCategorySuccess = (payload: INF.ICategory) => {
     return {
         type: CONST.ADD_CATEGORY_SUCCESS,
         payload
@@ -22,7 +22,7 @@ export const createCategoryFailure = (error: any) => {
     }
 }
 
-export const getCategoryStart = (payload: INF.ICategory) => {
+export const getCategoryStart = (payload: string) => {
     return {
         type: CONST.GET_CATEGORIES_START,
         payload
@@ -50,7 +50,7 @@ export const updateCategoryStart = (payload: INF.IUpdateCategory) => {
     }
 }
 
-export const updateCategorySuccess = (payload: INF.IUpdateCategory) => {
+export const updateCategorySuccess = (payload: INF.IResCategory) => {
     return {
         type: CONST.UPDATE_CATEGORY_SUCCESS,
         payload

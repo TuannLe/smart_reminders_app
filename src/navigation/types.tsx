@@ -11,11 +11,13 @@ export type RootStackParamList = {
     SignIn: undefined;
     SignUp: undefined;
     Root: NavigatorScreenParams<RootTabParamList> | undefined;
-    TaskDetail: undefined;
+    TaskDetail: any;
     RepeatItem: undefined;
     EndRepeat: undefined;
     NewCategory: undefined;
+    EditCategory: any;
     TaskList: undefined;
+    CreateNoteScreen: undefined;
 }
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
@@ -28,6 +30,7 @@ export type RootTabParamList = {
     CategoriesTab: undefined;
     TaskTab: undefined;
     SettingTab: undefined;
+    DashboardTab: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<

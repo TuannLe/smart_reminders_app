@@ -10,7 +10,7 @@ export default function ItemCategory({ item }: MODELS.CategoryModel | any) {
     return (
         <TouchableOpacity
             onPress={() => navigation.navigate('TaskList')}
-            style={tw`flex items-center bg-${item.item.color} rounded-lg py-3`}
+            style={tw`flex items-center bg-[${item.item.theme}] rounded-lg py-3`}
         >
             <Text style={tw`text-xl text-black font-medium`}>{item.item.name}</Text>
             <Text style={tw`text-[#333] text-sm text-black`}>20 tasks</Text>

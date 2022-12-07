@@ -1,10 +1,10 @@
 export interface ISignIn {
-    email: string,
-    password: string
+    email: string;
+    password: string;
 }
 
-export interface ISignUp {
-    email: string
+export interface ISignUp extends ISignIn {
+    username: string;
 }
 
 export interface IResAuth {
@@ -12,3 +12,4 @@ export interface IResAuth {
     username: string,
     access_token: string
 }
+

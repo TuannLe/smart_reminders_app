@@ -1,13 +1,13 @@
 import * as CONST from './constants'
-
+import { IResCategory } from './interfaces'
 export interface initStateModel {
-    arrayCategory: Array<Object>,
+    arrayCategory: Array<IResCategory>,
     message: string,
 }
 
 const initState: initStateModel = {
     arrayCategory: undefined,
-    message: undefined,
+    message: '',
 };
 
 const CategoryReducer = (state: initStateModel = initState, action: ActionModel) => {
@@ -18,14 +18,17 @@ const CategoryReducer = (state: initStateModel = initState, action: ActionModel)
                 ...state,
             }
         case CONST.ADD_CATEGORY_SUCCESS:
+            console.log("dataa", action.payload)
+            const newArray = [...state.arrayCategory]
+            newArray.push(action.payload)
             return {
                 ...state,
-                arrayCategory: action.payload
+                arrayCategory: newArray,
+                message: 'Create category successfully'
             }
         case CONST.ADD_CATEGORY_FAILURE:
             return {
                 ...state,
-                message: action.payload
             }
         // Get
         case CONST.GET_CATEGORIES_START:
@@ -48,9 +51,14 @@ const CategoryReducer = (state: initStateModel = initState, action: ActionModel)
                 ...state,
             }
         case CONST.UPDATE_CATEGORY_SUCCESS:
+            const updateArray = [...state.arrayCategory]
+            updateArray.splice(updateArray.findIndex((item) => {
+                return item.idCategory === action.payload.idCategory
+            }), 1)
+            updateArray.push(action.payload)
             return {
                 ...state,
-                arrayCategory: action.payload
+                arrayCategory: updateArray
             }
         case CONST.UPDATE_CATEGORY_FAILURE:
             return {
@@ -63,9 +71,13 @@ const CategoryReducer = (state: initStateModel = initState, action: ActionModel)
                 ...state,
             }
         case CONST.DELETE_CATEGORY_SUCCESS:
+            const removeArray = [...state.arrayCategory]
+            removeArray.splice(removeArray.findIndex((item) => {
+                return item.idCategory === action.payload.idCategory
+            }), 1)
             return {
                 ...state,
-                arrayCategory: action.payload
+                arrayCategory: removeArray,
             }
         case CONST.DELETE_CATEGORY_FAILURE:
             return {

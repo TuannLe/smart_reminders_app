@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native'
 export default function AddCategory() {
     const navigation = useNavigation()
     return (
-        <View style={tw`bg-gray-100 rounded-lg py-3 w-20`}>
+        <View style={tw`ml-3 bg-gray-300 rounded-lg py-5.5 w-45`}>
             <TouchableOpacity
                 onPress={() => navigation.navigate('NewCategory')}
             >

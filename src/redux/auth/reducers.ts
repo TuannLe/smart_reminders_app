@@ -1,14 +1,17 @@
 import * as CONST from "./constants";
-import * as ACT from "./actions";
 import * as INF from "./interfaces";
 
 export interface initStateModel {
-    currentUser: object,
+    currentUser: INF.IResAuth,
     messages: string,
 }
 
 const initState: initStateModel = {
-    currentUser: undefined,
+    currentUser: {
+        email: '',
+        username: '',
+        access_token: '',
+    },
     messages: undefined,
 };
 
@@ -26,13 +29,13 @@ const AuthReducer = (state: initStateModel = initState, action: ActionModel) => 
         case CONST.SIGN_UP_FAILURE:
             return {
                 ...state,
-                messages: 'Loi'
             }
         case CONST.SIGN_UP_START:
             return {
                 ...state,
             }
         case CONST.SIGN_UP_SUCCESS:
+            console.log('data', action.payload)
             return {
                 ...state,
                 currentUser: action.payload
@@ -40,7 +43,16 @@ const AuthReducer = (state: initStateModel = initState, action: ActionModel) => 
         case CONST.SIGN_UP_FAILURE:
             return {
                 ...state,
-                messages: 'Loi roi'
+                messages: 'Register Failure'
+            }
+        case CONST.LOGOUT:
+            return {
+                ...state,
+                currentUser: {
+                    email: '',
+                    username: '',
+                    access_token: '',
+                }
             }
         default:
             return state

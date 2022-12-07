@@ -5,16 +5,16 @@ const subdirectory = '/auth'
 
 export const signIn = async (data: ISignIn) => {
     try {
-        const res = await AXIOS.post(`${subdirectory}/login`, data)
+        const res = await AXIOS.post(`${subdirectory}/signin`, data)
         return res
     } catch (error) {
         return error
     }
 }
 
-export const signUP = async (data: ISignUp) => {
+export const signUp = async (data: ISignUp) => {
     try {
-        const res = await AXIOS.post(`${subdirectory}/register`, data)
+        const res = await AXIOS.post(`${subdirectory}/signup`, data)
         return res
     } catch (error) {
         return error

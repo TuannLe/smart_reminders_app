@@ -3,17 +3,14 @@ import { ICreateCategory, IUpdateCategory } from '../redux/category/interfaces'
 
 const subdirectory = '/category'
 
-export const create = async ({
-    data,
-    token,
-}: {
-    data: ICreateCategory;
-    token: string;
-}) => {
+export const create = async (data: ICreateCategory) => {
     try {
-        const res = await AXIOS.post(`${subdirectory}/add`, data, {
+        const res = await AXIOS.post(`${subdirectory}/add`, {
+            "name": data.name,
+            "theme": data.theme
+        }, {
             headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${data.token}`,
             },
         });
         return res
@@ -34,17 +31,15 @@ export const get = async (token: string) => {
     }
 };
 
-export const update = async ({
-    data,
-    token,
-}: {
-    data: IUpdateCategory;
-    token: string;
-}) => {
+export const update = async (data: IUpdateCategory) => {
     try {
-        const res = await AXIOS.post(`${subdirectory}/update`, data, {
+        const res = await AXIOS.post(`${subdirectory}/update`, {
+            "idCategory": data.idCategory,
+            "name": data.name,
+            "theme": data.theme
+        }, {
             headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${data.token}`,
             },
         });
         return res
@@ -53,9 +48,9 @@ export const update = async ({
     }
 };
 
-export const remove = async ({ id, token }: { id: string; token: string }) => {
+export const remove = async ({ idCategory, token }: { idCategory: string; token: string }) => {
     try {
-        return await AXIOS.delete(`${subdirectory}/${id}`, {
+        return await AXIOS.delete(`${subdirectory}/${idCategory}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },

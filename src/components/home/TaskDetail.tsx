@@ -2,8 +2,25 @@ import { View, Text, TouchableOpacity, TextInput, Switch } from 'react-native'
 import React, { useState } from 'react'
 import tw from 'twrnc'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import { useDispatch, useSelector } from 'react-redux'
+import DatePicker from 'react-native-date-picker'
+import SelectDropdown from 'react-native-select-dropdown'
+import { IRootReducer } from '../../redux/rootReducer'
+import { } from '../../redux/note/actions'
 
-export default function TaskDetail({ navigation }) {
+export default function TaskDetail({ navigation, route }) {
+    const dataItem = route.params.item
+    const token = useSelector((state: IRootReducer) => state.auth.currentUser.access_token)
+    const listCategories = useSelector((state: IRootReducer) => state.category.arrayCategory)
+
+    const [open, setOpen] = useState(false)
+    const [idCategory, setIdCategory] = useState('')
+    const [note, setNote] = useState(dataItem.note)
+    const [date, setDate] = useState(new Date())
+    const [necessity, setNecessity] = useState(dataItem.necessity)
+    const [message, setMessage] = useState('')
+    const status = 0
+
     const [isToggleTime, setToggleTime] = useState(false)
     const [isToggleLocation, setToggleLocation] = useState(false)
     const toggleSwitchTime = () => setToggleTime(!isToggleTime);
@@ -25,10 +42,45 @@ export default function TaskDetail({ navigation }) {
                     <Text style={tw`text-base text-blue-500 font-medium`}>Done</Text>
                 </TouchableOpacity>
             </View>
-            <View style={tw`mt-8 p-4 border border-gray-300 bg-white`}>
+            <SelectDropdown
+                data={listCategories}
+                onSelect={(selectedItem, index) => {
+                    setIdCategory(selectedItem.idCategory)
+                    console.log(selectedItem.idCategory, index)
+                }}
+                buttonTextAfterSelection={(selectedItem, index) => {
+                    return selectedItem.name
+                }}
+                rowTextForSelection={(item, index) => {
+                    return item.name
+                }}
+                defaultButtonText="Select Category"
+                buttonStyle={tw`w-full border border-gray-300 bg-white`}
+                buttonTextStyle={tw`text-base`}
+                selectedRowStyle={tw`bg-blue-200`}
+            />
+            <TouchableOpacity
+                onPress={() => setOpen(!open)}
+                style={tw`mt-8 p-3 border border-gray-300 bg-white`}
+            >
+                <Text style={tw`text-base text-black`}>Date and time</Text>
+            </TouchableOpacity>
+            <DatePicker
+                modal
+                open={open}
+                date={date}
+                onConfirm={(date) => {
+                    setOpen(false)
+                    setDate(date)
+                }}
+                onCancel={() => {
+                    setOpen(false)
+                }}
+            />
+            {/* <View style={tw`mt-8 p-4 border border-gray-300 bg-white`}>
                 <Text style={tw`text-base text-black`}>Task name</Text>
-            </View>
-            <View style={tw`flex mt-8 border border-gray-300 bg-white`}>
+            </View> */}
+            {/* <View style={tw`flex mt-8 border border-gray-300 bg-white`}>
                 <View style={tw`flex flex-row items-center p-4 justify-between`}>
                     <Text style={tw`text-base text-black`}>Reminder me before</Text>
                     <Switch
@@ -66,32 +118,51 @@ export default function TaskDetail({ navigation }) {
                         value={isToggleLocation}
                     />
                 </View>
-            </View>
+            </View> */}
             <View style={tw`mt-8 border border-gray-300 bg-white`}>
                 <View style={tw`flex flex-row items-center justify-between p-4`}>
                     <Text style={tw`text-base text-black`}>Necessity</Text>
                     <View style={tw`flex flex-row items-center`}>
                         <TouchableOpacity
-                            style={tw`w-5 h-5 bg-green-300 rounded-full flex items-center justify-center`}
+                            style={tw`w-5 h-5 bg-green-400 rounded-full flex items-center justify-center`}
                         >
-                            <View style={tw`w-2 h-2 bg-white rounded-full`}></View>
+                            {
+                                necessity === 1 ? (
+                                    <View style={tw`w-2 h-2 bg-white rounded-full`}></View>
+                                ) : (
+                                    <></>
+                                )
+                            }
                         </TouchableOpacity>
                         <TouchableOpacity
-                            style={tw`w-5 h-5 bg-orange-300 rounded-full flex items-center justify-center ml-2`}
+                            style={tw`w-5 h-5 bg-blue-400 rounded-full flex items-center justify-center ml-2`}
                         >
-
+                            {
+                                necessity === 2 ? (
+                                    <View style={tw`w-2 h-2 bg-white rounded-full`}></View>
+                                ) : (
+                                    <></>
+                                )
+                            }
                         </TouchableOpacity>
                         <TouchableOpacity
-                            style={tw`w-5 h-5 bg-red-400 rounded-full flex items-center justify-center ml-2`}
+                            style={tw`w-5 h-5 bg-red-500 rounded-full flex items-center justify-center ml-2`}
                         >
-
+                            {
+                                necessity === 3 ? (
+                                    <View style={tw`w-2 h-2 bg-white rounded-full`}></View>
+                                ) : (
+                                    <></>
+                                )
+                            }
                         </TouchableOpacity>
                     </View>
                 </View>
                 <View style={tw`border-t border-gray-300 ml-4`} />
                 <Text style={tw`text-base text-black px-4 mt-3`}>Note</Text>
                 <TextInput
-                    style={tw`mx-4 text-base`}
+                    value={note}
+                    style={tw`mx-3 text-base`}
                 />
             </View>
         </View>

@@ -42,3 +42,9 @@ export const signUpFailure = (error: any) => {
         payload: error
     }
 }
+
+export const logout = () => {
+    return {
+        type: CONSTANTS.LOGOUT,
+    }
+}

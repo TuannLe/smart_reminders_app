@@ -11,6 +11,7 @@ function* signIn(action: any) {
     try {
         const response: ResponseGenerator = yield call(APIS.signIn, payload)
         const data: INF.IResAuth = response.data
+        console.log("ressssssss", data)
         if (response.status === 200) {
             yield put(ACT.signInSuccess(data))
         } else {
@@ -24,12 +25,17 @@ function* signIn(action: any) {
 function* signUp(action: any) {
     const payload: INF.ISignUp = action.payload
     try {
-        const response: ResponseGenerator = yield call(APIS.signUP, payload)
-        const data: INF.IResAuth = response.data
-        if (response.status === 200) {
-            yield put(ACT.signUpSuccess(data))
+        const response: ResponseGenerator = yield call(APIS.signUp, payload)
+        const data = response.data
+        const newData: INF.IResAuth = {
+            access_token: data.token,
+            username: data.username,
+            email: data.email
+        }
+        if (response.status === 201) {
+            yield put(ACT.signUpSuccess(newData))
         } else {
-            yield put(ACT.signUpFailure(data))
+            yield put(ACT.signUpFailure(newData))
         }
     } catch (error) {
         yield put(ACT.signUpFailure(error));

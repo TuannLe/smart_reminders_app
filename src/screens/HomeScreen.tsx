@@ -1,7 +1,14 @@
 import { View, Text, TextInput, TouchableOpacity, FlatList } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import tw from 'twrnc'
-import TaskItem from '../components/home/TaskItem'
+import AntDesignIcon from 'react-native-vector-icons/AntDesign'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigation } from '@react-navigation/native'
+import TodayNote from '../components/home/TodayNote'
+import Categories from '../components/home/Categories'
+import { IRootReducer } from '../redux/rootReducer'
+import * as ACT from '../redux/category/actions'
+import * as ACT_NOTE from '../redux/note/actions'
 
 const data = [
     {
@@ -39,31 +46,26 @@ const data = [
 ]
 
 export default function HomeScreen() {
+    const dispatch = useDispatch()
+    const navigation = useNavigation()
+    const token = useSelector((state: IRootReducer) => state.auth.currentUser.access_token)
+    useEffect(() => {
+        dispatch(ACT.getCategoryStart(token))
+        dispatch(ACT_NOTE.getNoteStart(token))
+    }, [])
+
     return (
         <View style={tw`flex w-full h-full`}>
-            {/* <View style={tw`flex flex-row items-center justify-between mt-3`}>
-                <TextInput
-                    placeholder='Search...'
-                    style={tw`flex-1 bg-gray-300 text-base rounded p-1.5`}
-                />
+            <Categories />
+            <TodayNote />
+            <View style={tw`absolute right-3 bottom-5`}>
                 <TouchableOpacity
-                    style={tw`p-3`}
+                    onPress={() => navigation.navigate('CreateNoteScreen')}
+                    style={tw`px-4 py-3 bg-blue-400 rounded-full`}
                 >
-                    <AntDesignIcon name='plus' style={tw`text-xl`} />
+                    <AntDesignIcon name="plus" style={tw`text-white text-xl`} />
                 </TouchableOpacity>
-            </View> */}
-            <Text style={tw`px-3 text-black`}>Hi Username! Lorem ipsum dolor sit.hide</Text>
-            <View style={tw`flex flex-row items-center px-3`}>
-                <Text style={tw`text-3xl text-blue-500 font-medium`}>Today</Text>
-                <View style={tw`border border-gray-300 px-2 rounded-xl ml-3`}>
-                    <Text style={tw`text-base text-black`}>0/5</Text>
-                </View>
             </View>
-            <FlatList
-                data={data}
-                renderItem={(item) => (<TaskItem item={item} />)}
-                keyExtractor={(item) => item.id}
-            />
         </View>
     )
 }
